@@ -114,9 +114,6 @@ function setupInfiniteLeftSlider(sliderId, direction = 'left', speed = 0.5) {
 }
 
 // Initialize both sliders
-setupInfiniteLeftSlider('slider2', 'left', 0.4);
-
-
 document.addEventListener("DOMContentLoaded", () => {
   const sliderImages = [
     "assests/herothree.jpeg",
@@ -131,43 +128,49 @@ document.addEventListener("DOMContentLoaded", () => {
   const nextBtn = document.getElementById("nextBtn");
   const preBtn = document.getElementById("preBtn");
 
+  // Preload images
+  const preloadedImages = [];
+
+  function preloadImage(index) {
+    if (!preloadedImages[index]) {
+      const img = new Image();
+      img.src = sliderImages[index];
+      preloadedImages[index] = img;
+    }
+  }
+
   function updateSlider(index) {
     currentIndex = index;
-    heroSlider.style.backgroundImage = `url('${sliderImages[currentIndex]}')`;
+
+    // Lazy load image: first set opacity 0, then load image, then fade in
+    heroSlider.style.opacity = 0;
+
+    // Preload current image
+    preloadImage(currentIndex);
+
+    // Wait a little for fade-in effect
+    setTimeout(() => {
+      heroSlider.style.backgroundImage = `url('${sliderImages[currentIndex]}')`;
+      heroSlider.style.transition = "opacity 0.5s ease-in-out";
+      heroSlider.style.opacity = 1;
+    }, 100); // small delay for lazy effect
+
+    // Preload next image in advance for smooth transition
+    preloadImage((currentIndex + 1) % sliderImages.length);
+
     updateDots();
     console.log(`Slide changed to: ${currentIndex}`);
   }
 
-function updateDots() {
-  dots.forEach((dot, i) => {
-    if (i === currentIndex) {
-      dot.classList.add("bg-white");
-      dot.classList.remove("bg-transparent");
-    } else {
-      dot.classList.add("bg-transparent");
-      dot.classList.remove("bg-white");
-    }
-  });
-}
-
-dots.forEach((dot) => {
-  dot.addEventListener("click", () => {
-    const index = parseInt(dot.dataset.index);
-    updateSlider(index);
-  });
-});
-
-  if (nextBtn) {
-    nextBtn.addEventListener("click", () => {
-      currentIndex = (currentIndex + 1) % sliderImages.length;
-      updateSlider(currentIndex);
-    });
-  }
-
-  if (preBtn) {
-    preBtn.addEventListener("click", () => {
-      currentIndex = (currentIndex - 1 + sliderImages.length) % sliderImages.length;
-      updateSlider(currentIndex);
+  function updateDots() {
+    dots.forEach((dot, i) => {
+      if (i === currentIndex) {
+        dot.classList.add("bg-white");
+        dot.classList.remove("bg-transparent");
+      } else {
+        dot.classList.add("bg-transparent");
+        dot.classList.remove("bg-white");
+      }
     });
   }
 
@@ -177,9 +180,21 @@ dots.forEach((dot) => {
     });
   });
 
+  if (nextBtn) {
+    nextBtn.addEventListener("click", () => {
+      updateSlider((currentIndex + 1) % sliderImages.length);
+    });
+  }
+
+  if (preBtn) {
+    preBtn.addEventListener("click", () => {
+      updateSlider((currentIndex - 1 + sliderImages.length) % sliderImages.length);
+    });
+  }
+
+  // Auto slide every 5 seconds
   setInterval(() => {
-    currentIndex = (currentIndex + 1) % sliderImages.length;
-    updateSlider(currentIndex);
+    updateSlider((currentIndex + 1) % sliderImages.length);
   }, 5000);
 
   updateSlider(0);
