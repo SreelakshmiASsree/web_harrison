@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        montserrat: ["Montserrat", "sans-serif"],
+                    },
+                },
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="mainstyle.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="font-montserrat">
+    <section class="">
+
+
+        <div
+            class="bg-[linear-gradient(to_right,_#03adf6_0%,_#1c4790_10%,_#1c4790_87%,_#03adf6_100%)] text-white font-semibold text-sm py-3">
+
+            <div class="custom_container">
+                <div class=" flex md:flex-row flex-col justify-between items-center ">
+                    <div class="lg:text-lg text-sm font-bold ">Toll Free No: 1800-572-5795</div>
+                    <div class="flex items-center gap-4 mt-2 md:mt-0 px-4">
+
+                        <div class="relative ">
+                            <input type="text" placeholder=""
+                                class="lg:w-full w-40 pl-9 pr-3 py-1 rounded-full text-sm text-[#fff] border border-[#fff] placeholder:text-[#27377b] bg-transparent focus:outline-none focus:ring-2 focus:ring-blue-300" />
+                            <i
+                                class="fa-solid fa-magnifying-glass absolute right-3 top-1/2 transform -translate-y-1/2 text-[#fff] text-sm"></i>
+                        </div>
+
+                        <div class="flex gap-4">
+                            <i class="fab fa-whatsapp lg:text-[23px] text-lg "></i>
+                            <i class="fab fa-instagram lg:text-[23px] text-lg "></i>
+                            <i class="fab fa-facebook lg:text-[23px] text-lg "></i>
+                            <i class="fab fa-linkedin-in lg:text-[23px] text-lg "></i>
+                            <i class="fab fa-youtube lg:text-[23px] text-lg "></i>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navbar -->
+        <nav class="bg-white shadow">
+            <div class="custom_container  ">
+                <!-- Logo + Hamburger -->
+                <div class="flex items-center justify-between lg:py-0 py-4  ">
+                    <a href="#" class="">
+                        <img src="assests/Harrison Logo.png" alt="Harrison Logo" class="lg:w-64 w-40" />
+                    </a>
+                    <!-- Hamburger Icon -->
+                    <button class="lg:hidden "
+                        onclick="document.getElementById('mobileMenu').classList.toggle('hidden')">
+                        <svg class="w-8 h-8 text-[#1f3c8a]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+
+
+                    <!-- Desktop Menu -->
+                    <ul
+                        class="hidden lg:flex items-center gap-6 justify-between text-[#1f3c8a] font-semibold text-center">
+
+
+                        <li class="relative group" id="aboutUsMenu">
+                            <button class="hover:text-sky-500 transition flex items-center font-bold lg:text-xl">
+                                About us <i class="fa-solid fa-chevron-down text-xs ml-1"></i>
+                            </button>
+
+                            <ul id="aboutUsDropdown"
+                                class="absolute left-40 w-fit px-4 mt-0 bg-white border rounded shadow text-[#1f3c8a] font-medium text-sm text-left z-50 hidden-menu">
+
+                                <li>
+                                    <a href="#"
+                                        class="block py-2 hover:text-sky-500 text-[17px] font-semibold">Vision</a>
+                                </li>
+
+                                <li class="relative mission-item">
+                                    <button class="mission-btn block w-full text-left py-2 text-[17px] font-semibold">
+                                        Mission
+                                    </button>
+
+                                    <ul id="missionSubItems"
+                                        class="absolute top-0 left-full bg-white border rounded shadow z-50 w-[180px] px-4 hidden-menu">
+                                        <li><a href="#"
+                                                class="block py-2 hover:text-sky-500 text-[17px] font-semibold">As a
+                                                Partner</a></li>
+                                        <li><a href="#"
+                                                class="block py-2 hover:text-sky-500 text-[17px] font-semibold">As an
+                                                Employee</a></li>
+                                    </ul>
+                                </li>
+
+
+                                <li>
+                                    <a href="#"
+                                        class="block py-2 hover:text-sky-500 text-[17px] font-semibold">Achievements</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="block py-2 hover:text-sky-500 text-[17px] font-semibold">CSR
+                                        Activity</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="relative " id="joinMenu">
+                            <a href="#" id="joinBtn"
+                                class="hover:text-sky-500 transition font-bold lg:text-lg flex items-center">
+                                Join us <i class="fa-solid fa-chevron-down text-xs ml-1"></i>
+                            </a>
+                            <ul id="joinDropdown"
+                                class="absolute hidden-menu -left-12 mt-0 w-[180px] px-4 bg-white border rounded shadow text-[#1f3c8a] font-medium text-sm text-left z-50">
+
+                                <li>
+                                    <a href="#" class="block py-2 hover:text-sky-500 text-[17px] font-semibold">As a
+                                        Partner</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="block py-2 hover:text-sky-500 text-[17px] font-semibold">As an
+                                        Employee</a>
+                                </li>
+                            </ul>
+                        </li>
+                        </li>
+                        <li><a href="#" class="hover:text-sky-500 transition font-bold lg:text-lg">Media</a></li>
+                        <li><a href="#" class="hover:text-sky-500 transition font-bold lg:text-lg">Catalogue</a>
+                        </li>
+                        <li><a href="#" class="hover:text-sky-500 transition font-bold lg:text-lg">Gallery</a></li>
+                        <li><a href="#" class="hover:text-sky-500 transition font-bold lg:text-lg">Blogs</a></li>
+                    </ul>
+
+                    <!-- Hero Image -->
+                    <div class="hidden lg:block">
+                        <img src="assests/Dharmender Ji.png" alt="Hero Image" class="w-24" />
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="lg:hidden hidden px-4 pb-4">
+                <ul class="space-y-2 text-[#1f3c8a] font-semibold">
+                    <li>
+                        <details class="w-full">
+                            <summary class="cursor-pointer py-1">About Us</summary>
+                            <ul class="pl-4 text-sm font-medium">
+                                <li><a href="#" class="block py-1">Vision</a></li>
+                                <li><a href="#" class="block py-1">Mission</a></li>
+                                <li><a href="#" class="block py-1">Achievements</a></li>
+                                <li><a href="#" class="block py-1">CSR Activity</a></li>
+                            </ul>
+                        </details>
+                    </li>
+                    <li>
+                        <details class="w-full">
+                            <summary class="cursor-pointer py-1">Join Us</summary>
+                            <ul class="pl-4 text-sm font-medium">
+                                <li><a href="#" class="block py-1">As a Partner</a></li>
+                                <li><a href="#" class="block py-1">As an Employee</a></li>
+                            </ul>
+                        </details>
+                    </li>
+                    <li><a href="#" class="block py-1">Media</a></li>
+                    <li><a href="#" class="block py-1">Catalogue</a></li>
+                    <li><a href="#" class="block py-1">Gallery</a></li>
+                    <li><a href="#" class="block py-1">Blogs</a></li>
+                </ul>
+            </div>
+        </nav>
+    </section>
+
+    <section>
+        <div id="heroSlider"
+            class="relative h-[300px] lg:h-screen bg-cover bg-center transition-all duration-500 ease-in-out"
+            style="background-image: url('assests/herothree.jpeg'); background-repeat: no-repeat;">
+        </div>
+
+
+        <div class="relative z-10 h-full flex justify-center items-center px-8 md:px-16 text-center">
+
+        </div>
+
+        <div class="hidden lg:block">
+
+            <button id="preBtn"
+                class="absolute top-3/4 lg:left-10 left-20 transform -translate-y-1/2 text-[#000] text-2xl bg-[#fff] hover:bg-[#d2d0d0] w-14 h-14 rounded-full flex justify-center items-center">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+
+            <button id="nextBtn"
+                class="absolute top-3/4 right-40 transform -translate-y-1/2 text-[#000] text-2xl bg-[#fff] hover:bg-[#d2d0d0] w-14 h-14 rounded-full flex justify-center items-center">
+                <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+
+
+
+        <div id="heroDots" class="absolute lg:-bottom-16 bottom-44 left-1/2 transform -translate-x-1/2 flex gap-2">
+            <button data-index="0"
+                class="dot lg:w-5 lg:h-5 w-3 h-3 rounded-full bg-transparent border-2 border-white transition"></button>
+            <button data-index="1"
+                class="dot lg:w-5 lg:h-5 w-3 h-3 rounded-full bg-transparent border-2 border-white transition"></button>
+            <button data-index="2"
+                class="dot lg:w-5 lg:h-5 w-3 h-3 rounded-full bg-transparent border-2 border-white transition"></button>
+            <button data-index="3"
+                class="dot lg:w-5 lg:h-5 w-3 h-3 rounded-full bg-transparent border-2 border-white transition"></button>
+        </div>
+
+        <div class="flex flex-col absolute right-0 lg:top-56 top-44 lg:gap-2 gap-2 z-50 pointer-events-auto">
+
+            <div>
+                <img src="assests/3 Kitchen Logo Icon.png" alt="Kitchen Logo"
+                    class="lg:w-[150px] w-[70px] object-contain bg-[#fff] rounded-l-xl rounded-tl-[25px] transform transition-transform duration-300 ease-in-out hover:scale-125" />
+            </div>
+            <div>
+                <img src="assests/4 Haance Logo Icon.png" alt="Kitchen Logo"
+                    class="lg:w-[150px] w-[70px]  object-contain bg-[#fff] rounded-l-xl transform transition-transform duration-300 ease-in-out hover:scale-125" />
+            </div>
+            <div>
+                <img src="assests/5 E Dor Logo Icon.png" alt="Kitchen Logo"
+                    class="lg:w-[150px] w-[70px]  object-contain bg-[#fff] rounded-l-xl transform transition-transform duration-300 ease-in-out hover:scale-125" />
+            </div>
+            <div>
+                <img src="assests/6 S & T Logo Icon.png" alt="Kitchen Logo"
+                    class="lg:w-[150px] w-[70px]  object-contain bg-[#fff] rounded-l-xl transform transition-transform duration-300 ease-in-out hover:scale-125" />
+            </div>
+            <div>
+                <img src="assests/7 Profile X Logo Icon.png" alt="Kitchen Logo"
+                    class="lg:w-[150px] w-[70px]  object-contain bg-[#fff] rounded-l-xl transform transition-transform duration-300 ease-in-out hover:scale-125" />
+            </div>
+            <div>
+                <img src="assests/8 Power X Logo Icon.png" alt="Kitchen Logo"
+                    class="lg:w-[150px] w-[70px]  object-contain bg-[#fff] rounded-l-xl rounded-tl-[25px]  transform transition-transform duration-300 ease-in-out hover:scale-125" />
+            </div>
+        </div>
+
+        </div>
+
+    </section>
+
+    <section>
+        <div class="relative w-full  lg:h-[120vh] bg-cover bg-center flex items-center justify-end px-4 md:px-8"
+            style="background-image: url('assests/secondbanner.webp');">
+
+            <div class="absolute lg:top-28 top-[4.2rem] left-[7.5rem] lg:left-[39%] perspective order-2">
+                <img src="assests/2 Harrison Monogram.png" alt="Harrison Logo"
+                    class="lg:w-44 w-20 custom-tilt drop-shadow-[10px_10px_10px_rgba(0,0,0,20)]">
+            </div>
+
+            <div
+                class="bg-[#49245f59]/30 py-4  md:py-8 max-w-[355px] px-4 flex flex-col gap-4 text-white mr-10 lg:my-0 my-10 z-10 order-1 lg:order-none">
+                <div class="flex items-center gap-1 bg-white w-fit text-[#002147] px-2 lg:px-6 py-1  font-bold">
+                    <span class="h-px w-10 bg-[#002147]"></span>
+                    <h5 class="text-[12px] md:text-[13px] font-bold inline-block ">
+                        WELCOME TO HARRISON LOCKS
+                    </h5>
+                </div>
+
+                <div>
+                    <p class="font-semibold text-lg md:text-[1.5rem] uppercase max-w-[360px]">
+                        Pioneers in the lock & hardware industry in India
+                    </p>
+                </div>
+                <div class="text-sm ">
+                    <p class="text-[17px] font-semibold mb-1">Quality at its core</p>
+                    <p class="text-xs leading-5 max-w-[325px]">
+                        Our R & D department is always at work to improve quality, looks and style.</p>
+                </div>
+
+                <div class="text-xs lg:text-sm ">
+                    <p class="text-[17px] font-semibold mb-1 max-w-[325px]">Brand leader in the segment for over 7
+                        decades</p>
+                    <p class="text-xs leading-5 max-w-[300px]"> Thanks to the trust shown by our customers over these
+                        years. We look
+                        forward to a longer journey
+                        ahead with you!</p>
+                </div>
+                <div class="mt-5">
+                    <button class="bg-white text-[#002147] font-semibold px-5 py-3  text-xs">
+                        READ MORE
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="py-10 ">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+
+            <div class="flex flex-col items-center lg:gap-3">
+                <div class="p-4 rounded-full">
+                    <img src="assests/1 75+ icon.png" alt="75 Years of Trust" class=" object-contain" />
+                </div>
+                <div class="lg:text-7xl md:text-3xl text-3xl font-extrabold text-[#002c6b] count-up" data-target="75">0+
+                </div>
+
+                <div class="lg:text-2xl text-xl font-semibold text-[#002c6b]">Years of Trust</div>
+            </div>
+
+            <div class="flex flex-col items-center lg:gap-3">
+                <div class=" p-4 rounded-full">
+                    <img src="assests/2 Network Icon.png" alt="Network" class=" object-contain" />
+                </div>
+                <div class="lg:text-7xl md:text-3xl text-3xl font-extrabold text-[#002c6b] count-up" data-target="1500">
+                    0+</div>
+
+                <div class="lg:text-2xl text-xl font-semibold text-[#002c6b]">Network</div>
+            </div>
+
+            <div class="flex flex-col items-center lg:gap-3">
+                <div class=" p-4 rounded-full">
+                    <img src="assests/3 Product Icon.png" alt="Products" class=" object-contain" />
+                </div>
+                <div class="lg:text-7xl md:text-3xl text-3xl font-extrabold text-[#002c6b] count-up" data-target="800">
+                    0+</div>
+
+                <div class="lg:text-2xl text-xl font-semibold text-[#002c6b]">Products</div>
+            </div>
+
+            <div class="flex flex-col items-center lg:gap-3">
+                <div class=" p-4 rounded-full">
+                    <img src="assests/4 Employee Icon.png" alt="Employee" class=" object-contain" />
+                </div>
+                <div class="lg:text-7xl md:text-3xl text-3xl font-extrabold text-[#002c6b] count-up" data-target="1000">
+                    0+</div>
+
+                <div class="lg:text-2xl text-xl font-semibold text-[#002c6b] ">Employee</div>
+            </div>
+
+        </div>
+        <div class="border border-[#cfcfcf] w-full mt-4"></div>
+    </section>
+
+    <section class=" lg:py-10 py-5 ">
+        <div class="custom_container">
+
+            <div class="flex flex-col md:flex-row items-center justify-center lg:gap-20 gap-10">
+
+                <div class=" flex justify-center">
+                    <div class="relative w-full max-w-xs">
+                        <div
+                            class="absolute top-[10px] left-[10px] lg:w-72 w-56 h-64 lg:h-[340px] bg-[#00adef] rounded-[15px] z-0 rotate-[30deg]  shadow-[0px_30px_80px_rgba(0,0,0,0.3)]">
+                        </div>
+                        <div>
+                            <img src="assests/Vision Image.png" alt="Vision Eye Image"
+                                class="relative z-10  object-contain lg:w-72 w-56 rounded-2xl rotate-[18deg]    " />
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="">
+                    <h2 class="text-2xl lg:text-5xl md:text-3xl font-extrabold text-[#00adef] mb-4">VISION</h2>
+                    <p class="mb-4 text-[#0a3a6d] max-w-[772px] text-sm lg:text-lg">
+                        Vision without action is merely a dream. Action without vision just passes the time. Vision with
+                        action can change the world.
+                    </p>
+                    <p class="text-[#0a3a6d] text-sm lg:text-lg max-w-[772px]  text-justify">
+                        <strong>HARRISON</strong> strives to be a trustworthy company, one of the best in security &amp;
+                        door hardware segments and a preferred partner in all door, furniture, wardrobe, kitchen
+                        hardware &amp; security solution segments. We also aim to be a forward-looking company—
+                        one that promotes a great working environment and reliability for all our partners in success.
+                    </p>
+
+                </div>
+            </div>
+
+
+
+            <div class="flex flex-col md:flex-row-reverse items-center justify-center lg:mb-20  gap-14  mt-20 ">
+
+                <div class=" flex justify-center">
+                    <div class="relative w-full max-w-xs mx-auto">
+
+                        <div
+                            class="absolute -top-[1px] left-[1px] lg:w-72 w-56 h-64 lg:h-[340px] bg-[#00adef] rounded-[15px] z-0 rotate-[30deg] shadow-[0_30px_80px_rgba(0,0,0,0.3)]">
+                        </div>
+
+
+                        <img src="assests/Mission Image.webp" alt="Mission Image"
+                            class="relative z-10 lg:w-72 w-56  object-contain rounded-2xl rotate-[15deg] shadow-lg" />
+                    </div>
+
+                </div>
+
+
+                <div class=" lg:mt-0  mt-8">
+                    <div class="flex justify-around lg:flex-row flex-col-reverse items-center">
+
+                        <p class=" text-[#002c6b] mb-3 font-bold lg:text-xl  text-lg">"The secret of success is
+                            consistency"</p>
+                        <h2 class="text-2xl lg:text-6xl md:text-3xl font-extrabold text-[#002c6b] mb-4">MISSION</h2>
+                    </div>
+                    <div class="">
+                        <div class="max-w-[700px]">
+                            <p class="text-[#0a3a6d] mb-4 text-sm lg:text-lg text-justify">
+                                Rapid globalization of our business in order to enrich the quality of life keeps
+                                Harrison’s R&amp;D department always ready to introduce their new series of world-class,
+                                modern, sleek
+                                and trendy-looking yet strong and sturdy products with safety features, time to time,
+                                that
+                                match international specifications and standards at affordable prices. The following
+                                important
+                                pillars on which our company is based:
+                            </p>
+
+                        </div>
+                        <ul class="flex flex-col  font-bold text-[#002c6b] text-sm lg:text-lg list-none">
+                            <li>TRUST</li>
+                            <li>RELIABILITY AND INTEGRITY</li>
+                            <li>CUSTOMER SERVICE & SATISFACTION</li>
+                            <li>VALUE FOR MONEY</li>
+                        </ul>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="border border-[#ededed] w-full mt-10"></div>
+    </section>
+    <section class="lg:pb-10 lg:pt-5 pb-5  overflow-hidden">
+        <div class="custom_container">
+
+            <div class="text-center  mb-5">
+                <h1 class="lg:text-5xl font-bold md:text-3xl text-xl text-[#00adef]">
+                    ACHIEVE<span class="text-[#002c6b]">MENTS</span>
+                </h1>
+            </div>
+
+
+            <div class="relative w-full overflow-hidden">
+                <div id="slider" class="flex gap-6  w-max">
+                    <div class="flex animate-slide gap-4 w-max">
+
+                        <div
+                            class="relative w-[200px] flex-shrink-0 overflow-hidden flex flex-col items-center text-center">
+                            <img src="assests/achievemnts/1.jpg" alt="Award 2023 "
+                                class=" h-[200px] object-contain bg-white shadow-xl p-1 rounded-xl " />
+                            <div
+                                class="absolute bottom-[7rem] left-[7rem] bg-[#00adef] text-white text-xs font-semibold px-3 py-1 rounded-md shadow">
+                                2023
+
+                            </div>
+                            <div class="text-center mt-4">
+                                <p class="text-sm font-bold text-[#0a3a6d] leading-snug">
+                                    BUSINESS ACHIEVEMENT Award 2023 For Excellence In Locks & Hardware
+                                    Solution
+                                </p>
+                            </div>
+                        </div>
+
+
+
+                        <div
+                            class="relative w-[200px] flex-shrink-0 overflow-hidden flex flex-col items-center text-center">
+                            <img src="assests/achievemnts/2.jpg" alt="Award 2020"
+                                class=" h-[200px] object-contain bg-white p-1 shadow-xl rounded-xl" />
+                            <div
+                                class="absolute bottom-[7rem] left-[7rem] bg-[#00adef] text-white text-xs font-semibold px-3 py-1 rounded-md shadow">
+                                2023
+
+                            </div>
+                            <div class="text-center mt-4">
+                                <p class="text-sm font-bold text-[#0a3a6d] leading-snug">
+                                    ET LEADERSHIP Award 2023 For Excellence In Door & Kitchen Hardware
+                                </p>
+                            </div>
+                        </div>
+
+                        <div
+                            class="relative w-[200px] flex-shrink-0 overflow-hidden flex flex-col items-center text-center">
+                            <img src="assests/achievemnts/3.jpg" alt="Award 2020"
+                                class=" h-[200px] object-contain bg-white p-1 shadow-xl rounded-xl" />
+                            <div
+                                class="absolute bottom-[7rem] left-[7rem] bg-[#00adef] text-white text-xs font-semibold px-3 py-1 rounded-md shadow">
+                                2019
+
+                            </div>
+                            <div class="text-center mt-4">
+                                <p class="text-sm font-bold text-[#0a3a6d] leading-snug">
+                                    TIMES BUSINESS AWARD 2019 For Most Trusted Brand In Locks & Hardware
+                                    Solution
+                                </p>
+                            </div>
+                        </div>
+
+                        <div
+                            class="relative w-[200px] flex-shrink-0 overflow-hidden flex flex-col items-center text-center">
+                            <img src="assests/achievemnts/4.jpg" alt="Award 2020"
+                                class=" h-[200px] object-contain bg-white shadow-xl p-1 rounded-xl" />
+                            <div
+                                class="absolute  bottom-[7rem] left-[7rem] bg-[#00adef] text-white text-xs font-semibold px-3 py-1 rounded-md shadow">
+                                2018
+
+                            </div>
+                            <div class="text-center mt-4">
+                                <p class="text-sm font-bold text-[#0a3a6d] leading-snug">
+                                    INDIAN OF THE YEAR 2018 For Emerging Kitchen Hardware Brand of the
+                                    year
+                                </p>
+                            </div>
+                        </div>
+
+                        <div
+                            class="relative w-[200px] flex-shrink-0 overflow-hidden flex flex-col items-center text-center">
+                            <img src="assests/achievemnts/5.jpg" alt="Award 2020"
+                                class=" h-[200px] object-contain bg-white shadow-xl p-1 rounded-xl" />
+                            <div
+                                class="absolute  bottom-[7rem] left-[7rem] bg-[#00adef] text-white text-xs font-semibold px-3 py-1 rounded-md shadow">
+                                2017
+
+                            </div>
+                            <div class="text-center mt-4">
+                                <p class="text-sm font-bold text-[#0a3a6d] leading-snug">
+                                    GLOBAL QUALITY AWARDS 2017 for Best Quality Standards in Lock &
+                                    Security Solutions
+                                </p>
+                            </div>
+                        </div>
+
+                        <div
+                            class="relative w-[200px] flex-shrink-0 overflow-hidden flex flex-col items-center text-center">
+                            <img src="assests/achievemnts/6.jpg" alt="Award 2020"
+                                class=" h-[200px] object-contain bg-white shadow-xl p-1 rounded-xl" />
+                            <div
+                                class="absolute  bottom-[7rem] left-[7rem] bg-[#00adef] text-white text-xs font-semibold px-3 py-1 rounded-md shadow">
+                                2017
+
+                            </div>
+                            <div class="text-center mt-4">
+                                <p class="text-sm font-bold text-[#0a3a6d] leading-snug">
+                                    Times Business QUALITY AWARDS 2017 for Best Quality Standards in
+                                    Lock & Security Solutions
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="border border-[#ededed] w-full mt-10"></div>
+    </section>
+
+    <section class="lg:pb-10 lg:pt-5 pb-5 ">
+        <div class="custom_container">
+            <div class="text-center mb-8">
+                <h1
+                    class="lg:text-5xl font-bold text-3xl  text-[#002c6b] underline decoration-dashed decoration-4 underline-offset-8">
+                    What We <span class="text-[#00adef]">Offer</span>
+                </h1>
+
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 place-items-center">
+                <!-- Card 1 -->
+                <div class="bg-white shadow-2xl rounded-2xl overflow-hidden text-start max-w-[300px] p-2 relative">
+                    <img src="assests/offer/1 Lock Division.png" alt="Locks Division"
+                        class="mx-auto mb-4 w-full object-contain  ">
+
+                    <!-- Big Dot -->
+                    <div class="flex justify-center mb-4 -mt-3 absolute bottom-[9rem] left-[13rem]">
+                        <div class="w-14 h-14 bg-[#00adef] rounded-lg"></div>
+                    </div>
+
+                    <div class="ml-4">
+                        <h5 class="text-lg lg:text-[24px] font-bold text-[#0c4290] mb-2">LOCKS<br>DIVISION</h5>
+                        <p class="mb-3 text-sm text-[#002c6b] max-w-[200px]">Example to view for Product etc. or Product
+                            etc.</p>
+                        <div class="flex justify-start mb-4">
+                            <button>
+                                <a href="#"
+                                    class="inline-block bg-[#00adef] font-semibold lg:text-[15px] text-sm text-white px-2 py-1 rounded-xl hover:bg-[#4a9dbd]">
+                                    View More
+                                </a>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Card 2 -->
+                <div class="bg-white shadow-2xl rounded-2xl overflow-hidden text-start max-w-[300px] p-2 relative">
+                    <img src="assests/offer/2 Door Hardware.png" alt="Locks Division"
+                        class="mx-auto mb-4 w-full object-contain  ">
+
+                    <!-- Big Dot -->
+                    <div class="flex justify-center mb-4 -mt-3 absolute bottom-[9rem] left-[13rem]">
+                        <div class="w-14 h-14 bg-[#00adef] rounded-lg"></div>
+                    </div>
+
+                    <div class="ml-4">
+                        <h5 class="text-lg lg:text-[24px] font-bold text-[#0c4290] mb-2">DOOR <br>HARDWARE</h5>
+                        <p class="mb-3 text-sm text-[#002c6b] max-w-[200px]">Example to view for Product etc. or Product
+                            etc.</p>
+                        <div class="flex justify-start mb-4">
+                            <button>
+                                <a href="#"
+                                    class="inline-block bg-[#00adef] font-semibold lg:text-[15px] text-sm text-white px-2 py-1 rounded-xl hover:bg-[#4a9dbd]">
+                                    View More
+                                </a>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Card 3 -->
+                <div class="bg-white shadow-2xl rounded-2xl overflow-hidden text-start max-w-[300px] p-2 relative">
+                    <img src="assests/offer/3 Builder Hardware.png" alt="Locks Division"
+                        class="mx-auto mb-4 w-full object-contain  ">
+
+
+                    <div class="flex justify-center mb-4 -mt-3 absolute bottom-[9rem] left-[13rem]">
+                        <div class="w-14 h-14 bg-[#00adef] rounded-lg"></div>
+                    </div>
+
+                    <div class="ml-4">
+                        <h5 class="text-lg lg:text-[24px] font-bold text-[#0c4290] mb-2">BUILDER <br>HARDWARE</h5>
+                        <p class="mb-3 text-sm text-[#002c6b] max-w-[200px]">Example to view for Product etc. or Product
+                            etc.</p>
+                        <div class="flex justify-start mb-4">
+                            <button>
+                                <a href="#"
+                                    class="inline-block bg-[#00adef] font-semibold lg:text-[15px] text-sm text-white px-2 py-1 rounded-xl hover:bg-[#4a9dbd]">
+                                    View More
+                                </a>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Card 4 -->
+                <div class="bg-white shadow-2xl rounded-2xl overflow-hidden text-start max-w-[300px] p-2 relative">
+                    <img src="assests/offer/4 Furniture & Kitchen.png" alt="Locks Division"
+                        class="mx-auto mb-4 w-full object-contain  ">
+
+
+                    <div class="flex justify-center mb-4 -mt-3 absolute bottom-[9rem] left-[13rem]">
+                        <div class="w-14 h-14 bg-[#00adef] rounded-lg"></div>
+                    </div>
+
+                    <div class="ml-4">
+                        <h5 class="text-lg lg:text-[24px] font-bold text-[#0c4290] mb-2">FURNITURE & <br>KITCHEN</h5>
+                        <p class="mb-3 text-sm text-[#002c6b] max-w-[200px]">Example to view for Product etc. or Product
+                            etc.</p>
+                        <div class="flex justify-start mb-4">
+                            <button>
+                                <a href="#"
+                                    class="inline-block bg-[#00adef] font-semibold lg:text-[15px] text-sm text-white px-2 py-1 rounded-xl hover:bg-[#4a9dbd]">
+                                    View More
+                                </a>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="border border-[#ededed] w-full mt-10"></div>
+    </section>
+
+    <section class="lg:py-10 py-5 ">
+        <div class="custom_container">
+            <div class="flex flex-col lg:flex-row items-center lg:gap-8">
+
+
+                <div class="w-full text-center max-w-2xl">
+                    <img src="assests/digital/1.digital products.png" alt="Digital Lock"
+                        class="w-full  object-contain mx-auto" />
+                </div>
+
+
+                <div class="w-full lg:w-7/12">
+                    <div class="lg:ml-4 text-center lg:text-start">
+                        <h2 class="text-2xl lg:text-5xl font-bold text-[#002c6b] mb-2">DIGITAL PRODUCTS</h2>
+                        <p class="lg:text-xl text-sm text-[#070e11] mb-2 font-semibold">Brand leader in the segment for
+                            over 7 <br>
+                            decades
+                        </p>
+                        <p class="text-[#0a3a6d] mb-6 max-w-[480px]  text-xs lg:text-lg">
+                            Thanks to the trust shown by our customers over these years. We look forward to a longer
+                            journey
+                            ahead with you!
+                        </p>
+                    </div>
+
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 lg:gap-4 gap-5  mb-6 place-items-center">
+
+                        <!-- Card 1 -->
+                        <div class="bg-white rounded-xl shadow-md  p-2 lg:max-w-[200px] max-w-[300px]">
+                            <img src="assests/digital/imageone.jpg" alt="Electronic Rim Locks"
+                                class="w-full object-contain mb-2 mx-auto" />
+                            <div class="ml-3 flex justify-start flex-col">
+                                <h6 class="font-semibold text-[#002c6b] mb-2 text-sm">ELECTRONIC RIM <br> LOCKS</h6>
+                                <div class="flex justify-start mb-2">
+                                    <button
+                                        class="bg-[#00adef] text-white px-2 py-1 text-sm rounded-md hover:bg-[#008fc8]">View
+                                        More</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 2 -->
+                        <div class="bg-white rounded-xl shadow-md  p-2 lg:max-w-[200px] max-w-[300px]">
+                            <img src="assests/digital/imagetwo.jpg" alt="Electronic Rim Locks"
+                                class="w-full object-contain mb-2 mx-auto" />
+                            <div class="ml-3 flex justify-start flex-col">
+                                <h6 class="font-semibold text-[#002c6b] mb-2 text-sm">BIOMETRIC <br> LOCKS</h6>
+                                <div class="flex justify-start mb-2">
+                                    <button
+                                        class="bg-[#00adef] text-white px-2 py-1 text-sm rounded-md hover:bg-[#008fc8]">View
+                                        More</button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Card 3 -->
+                        <div class="bg-white rounded-xl shadow-md  p-2 lg:max-w-[200px] max-w-[300px]">
+                            <img src="assests/digital/imagethree.jpg" alt="Electronic Rim Locks"
+                                class="w-full object-contain mb-2 mx-auto" />
+                            <div class="ml-3 flex justify-start flex-col">
+                                <h6 class="font-semibold text-[#002c6b] mb-6 text-sm">DIGITAL SAFES</h6>
+                                <div class="flex justify-start mb-2">
+                                    <button
+                                        class="bg-[#00adef] text-white px-2 py-1 text-sm rounded-md hover:bg-[#008fc8]">View
+                                        More</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class=" flex lg:justify-start justify-center">
+                        <button
+                            class="border text-sm  border-[#002c6b] text-[#fff] px-12 py-3  font-semibold bg-[#062757] hover:text-white transition">
+                            READ MORE
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="border border-[#ededed] w-full mt-10"></div>
+    </section>
+
+    <section class="pt-10 ">
+
+        <div class="custom_container">
+            <div class="flex flex-col-reverse lg:flex-row mb-10 gap-6 lg:gap-10 ">
+
+                <!-- Cards -->
+                <div class="relative w-full lg:w-8/12 overflow-hidden" id="slider1-wrapper">
+
+
+                    <div
+                        class="absolute top-0 right-0 w-5 h-full z-30 pointer-events-none rounded-l-xl bg-gradient-to-r to-black/15 from-transparent">
+                    </div>
+
+
+                    <div id="slider1" class="overflow-hidden w-full">
+
+                        <div class="slider-track flex gap-4 w-max whitespace-nowrap my-8">
+
+
+                            <!-- Card 1 -->
+
+                            <div
+                                class="bg-white rounded-xl  drop-shadow-[0_7px_7px_rgba(0,0,0,0.3)]  p-2 max-w-[240px] pb-3">
+                                <img src="assests/test/1 Architect image.jpg" alt="Electronic Rim Locks"
+                                    class="w-full object-contain mb-2 mx-auto" />
+                                <div class="ml-3 flex justify-start flex-col">
+                                    <div class="mb-8">
+                                        <h6 class=" text-[#002c6b] font-bold text-sm">ARCHITECT</h6>
+                                        <p class="text-[#00adef] text-xs">Ruchi & Shashank</p>
+                                    </div>
+                                    <div class="flex justify-start">
+                                        <button
+                                            class="bg-[#00adef] text-white flex justify-start pr-10 pl-2 font-semibold py-1 text-sm rounded-lg hover:bg-[#008fc8]">
+                                            PLAY</button>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!-- Card 2 -->
+                            <div
+                                class="bg-white rounded-xl  drop-shadow-[0_7px_7px_rgba(0,0,0,0.3)]  p-2 max-w-[240px] pb-3">
+                                <img src="assests/test/2 Interior Designer.jpg" alt="Electronic Rim Locks"
+                                    class="w-full object-contain mb-2 mx-auto" />
+                                <div class="ml-3 flex justify-start flex-col">
+                                    <div class="mb-8">
+                                        <h6 class=" text-[#002c6b] font-bold text-sm">INTERIOR D.</h6>
+                                        <p class="text-[#00adef] text-xs">Renu Chandhoke </p>
+                                    </div>
+
+                                    <div class="flex justify-start">
+                                        <button
+                                            class="bg-[#00adef] text-white flex justify-start pr-10 pl-2 font-semibold py-1 text-sm rounded-lg hover:bg-[#008fc8]">
+                                            PLAY</button>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!-- Card 3 -->
+                            <div
+                                class="bg-white rounded-xl  drop-shadow-[0_7px_7px_rgba(0,0,0,0.3)]  p-2 max-w-[240px] pb-3">
+                                <img src="assests/test/3 Builder.jpg" alt="Electronic Rim Locks"
+                                    class="w-full object-contain mb-2 mx-auto" />
+                                <div class="ml-3 flex justify-start flex-col">
+                                    <div class="mb-8">
+                                        <h6 class=" text-[#002c6b] font-bold text-sm">BUILDER</h6>
+                                        <p class="text-[#00adef] text-xs">Uday Khanna</p>
+                                    </div>
+
+                                    <div class="flex justify-start">
+                                        <button
+                                            class="bg-[#00adef] text-white flex justify-start pr-10 pl-2 font-semibold py-1 text-sm rounded-lg hover:bg-[#008fc8]">
+                                            PLAY</button>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!-- Card 4 -->
+                            <div
+                                class="bg-white rounded-xl  drop-shadow-[0_7px_7px_rgba(0,0,0,0.3)]  p-2 max-w-[240px] pb-3">
+                                <img src="assests/test/4 Channel Parter.jpg" alt="Electronic Rim Locks"
+                                    class="w-full object-contain mb-2 mx-auto" />
+                                <div class="ml-3 flex justify-start flex-col">
+                                    <div class="mb-8">
+                                        <h6 class=" text-[#002c6b] font-bold text-sm">CHANNEL PARTER</h6>
+                                        <p class="text-[#00adef] text-xs">Shushant Kedia</p>
+                                    </div>
+
+                                    <div class="flex justify-start">
+                                        <button
+                                            class="bg-[#00adef] text-white flex justify-start pr-10 pl-2 font-semibold py-1 text-sm rounded-lg hover:bg-[#008fc8]">
+                                            PLAY</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="w-full lg:w-4/12 text-center lg:text-left">
+                    <h2 class="lg:text-5xl text-3xl font-bold text-[#002c6b] mb-2 hidden lg:block">CUSTOMER <br />
+                        HAPPINESS</h2>
+                    <h2 class="lg:text-5xl text-2xl font-bold text-[#002c6b] mb-2 block lg:hidden">CUSTOMER
+                        HAPPINESS
+                    </h2>
+                    <p class="text-[#002c6b] lg:text-3xl text-lg ">Your happiness is our <br> biggest reward.</p>
+                </div>
+
+
+            </div>
+
+            <div class="border border-[#f0f0f0] w-full my-7"></div>
+
+            <div class="flex flex-col lg:flex-row gap-6 lg:gap-10">
+
+
+                <div class="w-full lg:w-4/12 text-center lg:text-left ">
+                    <h2 class="lg:text-5xl text-3xl font-bold text-[#002c6b] mb-2 hidden lg:block">CSR <br />
+                        ACTIVITIES
+                    </h2>
+                    <h2 class="lg:text-5xl text-2xl font-bold text-[#002c6b] mb-2 block lg:hidden">CSR ACTIVITIES
+                    </h2>
+                    <p class="text-[#002c6b] lg:text-3xl text-lg  ">Hand in Hand for a <br> Better World.</p>
+                </div>
+                <!-- Cards -->
+                <div class="w-full lg:w-8/12 overflow-hidden relative slider-wrapper" id="">
+                    <div
+                        class="absolute  top-0 left-0 w-5 h-full z-30 pointer-events-none rounded-r-xl bg-gradient-to-r from-black/10 to-transparent">
+                    </div>
+                    <div id="slider2" class="overflow-hidden w-full">
+                        <div class="slider-track flex gap-4 w-max my-5">
+
+                            <!-- CSR Card 1 -->
+                            <div
+                                class="bg-white rounded-xl  drop-shadow-[0_7px_7px_rgba(0,0,0,0.3)]  p-2 max-w-[240px] pb-3">
+                                <img src="assests/csr/1 Ram Mander.jpg" alt="Electronic Rim Locks"
+                                    class="w-full object-contain mb-2 mx-auto" />
+                                <div class="ml-3 flex justify-start flex-col">
+                                    <div class="mb-8">
+                                        <h6 class=" text-[#002c6b] font-bold text-sm">RAM MANDIR</h6>
+                                        <p class="text-[#00adef] text-xs">50 KG Biggest Lock</p>
+                                    </div>
+
+                                    <div class="flex justify-start">
+                                        <button
+                                            class="bg-[#00adef] text-white flex justify-start pr-6 pl-2 font-semibold py-1 text-sm rounded-lg hover:bg-[#008fc8]">
+                                            Read More</button>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!-- CSR Card 2 -->
+
+                            <div
+                                class="bg-white rounded-xl  drop-shadow-[0_7px_7px_rgba(0,0,0,0.3)]  p-2 max-w-[240px] pb-3">
+                                <img src="assests/csr/2 Mahakumbh.jpg" alt="Electronic Rim Locks"
+                                    class="w-full object-contain mb-2 mx-auto" />
+                                <div class="ml-3 flex justify-start flex-col">
+                                    <div class="mb-8">
+                                        <h6 class=" text-[#002c6b] font-bold text-sm">MAHAKUMBH</h6>
+                                        <p class="text-[#00adef] text-xs">10,000 Lock Distribution</p>
+                                    </div>
+
+                                    <div class="flex justify-start">
+                                        <button
+                                            class="bg-[#00adef] text-white flex justify-start pr-6 pl-2 font-semibold py-1 text-sm rounded-lg hover:bg-[#008fc8]">
+                                            Read More</button>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!-- CSR Card 3 -->
+
+                            <div
+                                class="bg-white rounded-xl  drop-shadow-[0_7px_7px_rgba(0,0,0,0.3)]  p-2 max-w-[240px] pb-3">
+                                <img src="assests/csr/Bound Hop.jpg" alt="Electronic Rim Locks"
+                                    class="w-full object-contain mb-2 mx-auto" />
+                                <div class="ml-3 flex justify-start flex-col">
+                                    <div class="mb-8">
+                                        <h6 class=" text-[#002c6b] font-bold text-sm">BOUND HOPE</h6>
+                                        <p class="text-[#00adef] text-xs">From Waste to Wisdom</p>
+                                    </div>
+
+                                    <div class="flex justify-start ">
+                                        <button
+                                            class="bg-[#00adef] text-white flex justify-start pr-6 pl-2  font-semibold py-1 text-sm rounded-lg hover:bg-[#008fc8]">
+                                            Read More</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="border border-[#ededed] w-full mt-10"></div>
+    </section>
+
+    <section class=" ">
+        <div class="custom_container">
+            <div class="flex flex-col lg:flex-row gap-8 pt-10">
+
+                <div class="w-full lg:w-2/3 grid grid-cols-1 md:grid-cols-2 ">
+
+                    <div class="flex  items-start gap-10">
+                        <div class="lg:flex items-start gap-4 p-4  rounded-lg  support-item">
+                            <img src="assests/1 Sales.jpg" alt="Sales"
+                                class="lg:w-16 w-12 lg:h-16 h-12 object-contain ">
+                            <div class="text-[#2DBAFF]">
+                                <div class="lg:text-3xl text-lg font-semibold">Sales</div>
+                                <div class="text-sm">+91 9310142401</div>
+                                <div class="text-sm">sales@harrisonlocks.com</div>
+                            </div>
+                        </div>
+                        <div class="w-[2px] h-20 bg-white hidden lg:block"></div>
+                    </div>
+
+
+                    <div class="lg:flex items-start gap-4 p-4  rounded-lg  support-item">
+                        <img src="assests/2 PR & CC.png" alt="PR & CC"
+                            class="lg:w-16 w-12 lg:h-16 h-12 object-contain ">
+                        <div class="text-[#2DBAFF]">
+                            <div class="lg:text-3xl text-lg font-semibold">PR & CC</div>
+                            <div class="text-sm">+91 7678250281</div>
+                            <div class="text-sm">rplocks@gmail.com</div>
+                        </div>
+                    </div>
+
+
+                    <div class="flex  items-start gap-12">
+                        <div class="lg:flex items-start gap-4 p-4  rounded-lg  support-item">
+                            <img src="assests/3 Enquiry.png" alt="Enquiry"
+                                class="lg:w-16 w-12 lg:h-16 h-12 object-contain ">
+                            <div class="text-[#2DBAFF]">
+                                <div class="lg:text-3xl text-lg font-semibold">Enquiry</div>
+                                <div class="text-sm">+91 9355029576</div>
+                                <div class="text-sm">info@harrisonlocks.com</div>
+                            </div>
+                        </div>
+                        <div class="w-px h-20 bg-white hidden lg:block"></div>
+                    </div>
+
+
+                    <div class="lg:flex items-start gap-4 p-4   rounded-lg  support-item">
+                        <img src="assests/4 Technical Support.png" alt="Technical Support"
+                            class="lg:w-16 w-12 lg:h-16 h-12 object-contain ">
+                        <div class="text-[#2DBAFF]">
+                            <div class="lg:text-3xl text-lg font-semibold">Technical Support</div>
+                            <div class="text-sm">+91 9355015108</div>
+                            <p class="text-sm ma">technical.support@harrisonlocks.com</p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="w-full lg:w-1/3 flex flex-col items-center justify-center text-center">
+                    <img src="assests/5 Make In India.webp" alt="Make in India" class="w-60 lg:w-80 mb-3">
+                    <div class="lg:text-xl text-lg font-bold text-[#002c6b]">TOLL FREE NO: 1800-572-9575</div>
+                </div>
+            </div>
+
+        </div>
+        <div class="border border-[#ededed] w-full mt-10"></div>
+    </section>
+
+    <footer class="    text-[#233384] ">
+        <div class="custom_container">
+            <div class="pt-10 pb-5">
+                <div class="flex flex-col md:flex-row md:gap-8 gap-4">
+
+
+                    <div class=" flex justify-center">
+                        <img src="assests/Dharmender Ji.webp" alt="Promo Image" class="lg:w-80 w-60 object-contain">
+                    </div>
+
+
+                    <div class=" text-center md:text-left">
+                        <img src="assests/2 Harrison Monogram.png" alt="Harrison Logo"
+                            class="mb-4 w-[130px] mx-auto md:mx-0">
+                        <p class="lg:text-lg text-sm leading-7 max-w-[375px]">
+                            Harrison has been known for providing the best security & hardware
+                            solutions.
+                            We're celebrating 75+ years of setting the standards of excellence and pushing the limits of
+                            product design.
+                        </p>
+                    </div>
+                    <div>
+                        <div class="w-px h-72 bg-[#233384] hidden lg:block"></div>
+                    </div>
+
+
+                    <div class="md:w-1/3 w-full flex flex-col gap-6">
+
+
+                        <div class="flex lg:gap-10 gap-5 items-center lg:flex-row flex-col">
+                            <div class="flex justify-center md:justify-start gap-4 text-2xl">
+                                <i class="fab fa-whatsapp lg:text-[23px] text-lg "></i>
+                                <i class="fab fa-instagram lg:text-[23px] text-lg "></i>
+                                <i class="fab fa-facebook lg:text-[23px] text-lg "></i>
+                                <i class="fab fa-linkedin-in lg:text-[23px] text-lg "></i>
+                                <i class="fab fa-youtube lg:text-[23px] text-lg "></i>
+                            </div>
+
+
+                            <div class="flex relative  justify-center md:justify-start">
+                                <input type="email" placeholder="Enter your email address"
+                                    class="px-3 py-2 border border-gray-300 rounded-l-[5px] placeholder:text-[#233384] text-xs w-52" />
+                                <button
+                                    class="bg-[#233384] text-white px-4 py-[5px] rounded-[5px] absolute -right-5 bottom-[0px]">
+                                    <i class="fa-regular fa-envelope"></i>
+                                </button>
+                            </div>
+                        </div>
+
+
+                        <div class="text-[15px] font-semibold w-max">
+                            <h1 class="mb-1 font-semibold text-lg">QUICK LINK</h1>
+                            <div class="flex lg:flex-row flex-col lg:gap-4 gap-2 text-[#233384]">
+
+
+                                <div class="relative group" id="quickLinkAboutUsMenu">
+                                    <a href="#" onclick="toggleQuickLinkAboutUs(event)"
+                                        class="hover:underline font-bold flex items-center">
+                                        About us <i class="fa-solid fa-chevron-down text-xs ml-1"></i>
+                                    </a>
+
+                                    <ul id="quickLinkAboutUsDropdown"
+                                        class="hidden absolute mt-2 bg-white border rounded shadow text-[#1f3c8a] font-medium text-sm text-left z-50">
+
+
+                                        <li>
+                                            <a href="#"
+                                                class="block py-2 px-3 hover:text-sky-500 font-semibold">Vision</a>
+                                        </li>
+
+
+                                        <li class="relative">
+                                            <button onclick="toggleQuickLinkMissionSub(event, this)"
+                                                class="quickLink-mission-btn  w-full text-left py-2 px-3 hover:text-sky-500 font-semibold flex items-center">
+                                                Mission <i class="fa-solid fa-chevron-right text-xs ml-1"></i>
+                                            </button>
+
+                                            <ul id="quickLinkMissionSubItems"
+                                                class="hidden absolute top-0 left-[140px] bg-white border rounded shadow z-50 w-[160px]">
+                                                <li><a href="#"
+                                                        class="block py-2 px-3 hover:text-sky-500 font-semibold">As a
+                                                        Partner</a></li>
+                                                <li><a href="#"
+                                                        class="block py-2 px-3 hover:text-sky-500 font-semibold">As an
+                                                        Employee</a></li>
+                                            </ul>
+                                        </li>
+
+
+                                        <li>
+                                            <a href="#"
+                                                class="block py-2 px-3 hover:text-sky-500 font-semibold">Achievements</a>
+                                        </li>
+
+
+                                        <li>
+                                            <a href="#" class="block py-2 px-3 hover:text-sky-500 font-semibold">CSR
+                                                Activity</a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+
+                                <div class="relative group" id="quickLinkJoinUsMenu">
+                                    <a href="#" onclick="toggleQuickLinkJoinUs(event)"
+                                        class="hover:underline font-bold flex items-center">
+                                        Join us <i class="fa-solid fa-chevron-down text-xs ml-1"></i>
+                                    </a>
+                                    <ul id="quickLinkJoinUsDropdown"
+                                        class="hidden absolute mt-2 bg-white w-[160px] border rounded shadow text-[#1f3c8a] font-medium text-sm text-left z-50">
+                                        <li><a href="#" class="block py-2 px-3 hover:text-sky-500 font-semibold">As a
+                                                Partner</a></li>
+                                        <li><a href="#" class="block py-2 px-3 hover:text-sky-500 font-semibold">As an
+                                                Employee</a></li>
+                                    </ul>
+                                </div>
+
+
+                                <a href="#" class="hover:underline font-bold">Media</a>
+                                <a href="#" class="hover:underline font-bold">Catalogue</a>
+                                <a href="#" class="hover:underline font-bold">Gallery</a>
+                                <a href="#" class="text-[#00adef] hover:underline font-bold">Blogs</a>
+                            </div>
+                        </div>
+
+
+
+
+                        <div class=" flex gap-12 items-end">
+                            <div class="text-xs leading-6 font-medium">
+                                <h1 class="font-semibold text-lg ">CONTACT INFO</h1>
+                                <div class="lg:text-[15px] text-sm">
+                                    <p>13 & 14, Central Market, Punjabi Bagh (West),<br>New Delhi-110026</p>
+                                    <p>+91 114 576 1101 -10 (10 lines)</p>
+                                    <p>info@harrisonlocks.com</p>
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-end gap-2 mt-10">
+                                <img src="assests/3 ALPL Logo.png" alt="ALIPL Logo" class="w-48">
+                                <div class="flex justify-end items-end">
+                                    <button class="bg-[#4dc9ec] text-white px-4 py-1 rounded-sm mt-2 md:mt-0"
+                                        onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">
+                                        ↑
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="mainscript.js" defer></script>
+    <script src="animationscripts.js"></script>
+</body>
+
+</html>

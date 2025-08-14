@@ -1,0 +1,156 @@
+.custom_container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0px 20px;
+
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-slide {
+  animation: slide 30s linear infinite;
+}
+
+
+.slider-track {
+  display: flex;
+  gap: 1rem;
+}
+
+.slider-wrapper {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.slider-track>* {
+  flex-shrink: 0;
+}
+
+.slider-track {
+  display: flex;
+  gap: 1rem;
+  width: max-content;
+ 
+}
+
+.slider-wrapper,
+#slider1,
+#slider2 {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+#heroDots,
+#preBtn,
+#nextBtn {
+  z-index: 50;
+  pointer-events: auto;
+}
+
+.perspective {
+  perspective: 1000px;
+
+}
+
+.custom-tilt {
+  transform: rotateY(-47deg) rotateX(20deg) rotateZ(-22deg);
+  transform-origin: center;
+}
+
+
+/* navbar hover */
+.hidden-menu {
+  display: none;
+}
+
+#aboutUsMenu:hover #aboutUsDropdown,
+#aboutUsDropdown:hover {
+  display: block;
+}
+
+
+.mission-btn:hover+#missionSubItems,
+#missionSubItems:hover {
+  display: block;
+}
+
+/* Positioning */
+#aboutUsMenu {
+  position: relative;
+}
+
+#aboutUsDropdown {
+  position: absolute;
+  top: 100%;
+  left: -33px;
+}
+
+.hidden-menu {
+  display: none;
+}
+
+.mission-btn:hover+#missionSubItems,
+#missionSubItems:hover {
+  display: block;
+}
+
+
+
+#missionSubItems {
+  position: absolute;
+  top: 0;
+  left: calc(100% + 20px);
+ 
+  background: white;
+  z-index: 999;
+  pointer-events: none;
+
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.15s ease;
+}
+
+
+#missionSubItems::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -20px;
+
+  width: 20px;
+  height: 100%;
+  background: transparent;
+}
+
+
+.mission-btn:hover+#missionSubItems,
+#missionSubItems:hover {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.mission-btn {
+  color: #1f2937;
+ 
+}
+
+.mission-item:hover .mission-btn {
+  color: #0ea5e9;
+ 
+}
+
+#joinMenu:hover #joinDropdown,
+#joinDropdown:hover {
+  display: block;
+}
