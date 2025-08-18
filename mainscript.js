@@ -26,37 +26,4 @@ document.addEventListener("click", function (event) {
 
 
 
-// footer dropdown
-function toggleQuickLinkAboutUs(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    closeQuickLinkDropdowns();
-    document.getElementById("quickLinkAboutUsDropdown").classList.toggle("hidden");
-}
 
-function toggleQuickLinkJoinUs(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    closeQuickLinkDropdowns();
-    document.getElementById("quickLinkJoinUsDropdown").classList.toggle("hidden");
-}
-
-function toggleQuickLinkMissionSub(e, btn) {
-    e.preventDefault();
-    e.stopPropagation();
-    const sub = document.getElementById("quickLinkMissionSubItems");
-    const isOpen = !sub.classList.contains("hidden");
-    document.getElementById("quickLinkMissionSubItems").classList.add("hidden");
-    if (!isOpen) sub.classList.remove("hidden");
-}
-
-function closeQuickLinkDropdowns() {
-    document.getElementById("quickLinkAboutUsDropdown")?.classList.add("hidden");
-    document.getElementById("quickLinkMissionSubItems")?.classList.add("hidden");
-    document.getElementById("quickLinkJoinUsDropdown")?.classList.add("hidden");
-}
-
-// Close all dropdowns when clicking outside
-document.addEventListener("click", function () {
-    closeQuickLinkDropdowns();
-});

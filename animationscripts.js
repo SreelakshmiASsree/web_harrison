@@ -1,3 +1,5 @@
+//number counter
+
 document.addEventListener("DOMContentLoaded", () => {
   const counters = document.querySelectorAll(".count-up");
 
@@ -5,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     counter.textContent = "0+";
     const target = +counter.getAttribute("data-target");
     let count = 0;
-    const increment = target / 200; // Speed control
+    const increment = target / 200;
 
     function updateCount() {
       count += increment;
@@ -26,14 +28,15 @@ document.addEventListener("DOMContentLoaded", () => {
         runCounter(entry.target);
       }
     });
-  }, { threshold: 0.5 }); // trigger when 50% visible
+  }, { threshold: 0.5 }); 
 
   counters.forEach(counter => observer.observe(counter));
 });
 
+//slider certificate
+
 const slider = document.getElementById("slider");
 
-// Duplicate ONLY the inner items
 const items = Array.from(slider.children);
 items.forEach(item => {
   const clone = item.cloneNode(true);
@@ -43,7 +46,7 @@ items.forEach(item => {
 let scrollAmount = 0;
 
 function animateSlider() {
-  scrollAmount += 1; // Change speed if needed
+  scrollAmount += 1; 
   if (scrollAmount >= slider.scrollWidth / 2) {
     scrollAmount = 0;
   }
@@ -53,11 +56,13 @@ function animateSlider() {
 
 animateSlider();
 
+
+//left and right slider 
+
 function setupInfiniteRightSlider(sliderId, direction = 'right', speed = 0.5) {
   const wrapper = document.getElementById(sliderId);
   const track = wrapper.querySelector('.slider-track');
 
-  // Clone items to allow seamless loop
   const items = Array.from(track.children);
   items.forEach(item => {
     const clone = item.cloneNode(true);
@@ -69,7 +74,6 @@ function setupInfiniteRightSlider(sliderId, direction = 'right', speed = 0.5) {
   function animate() {
     scrollPos += (direction === 'right' ? speed : -speed);
 
-    // Reset scroll when halfway through (seamless loop)
     if (Math.abs(scrollPos) >= track.scrollWidth / 2) {
       scrollPos = 0;
     }
@@ -81,15 +85,12 @@ function setupInfiniteRightSlider(sliderId, direction = 'right', speed = 0.5) {
   animate();
 }
 
-// Initialize both sliders
-setupInfiniteRightSlider('slider1', 'right', 0.4); // scroll left-to-right
 
-
+setupInfiniteRightSlider('slider1', 'right', 0.4); 
 function setupInfiniteLeftSlider(sliderId, direction = 'left', speed = 0.5) {
   const wrapper = document.getElementById(sliderId);
   const track = wrapper.querySelector('.slider-track');
 
-  // Clone items to allow seamless loop
   const items = Array.from(track.children);
   items.forEach(item => {
     const clone = item.cloneNode(true);
@@ -101,7 +102,6 @@ function setupInfiniteLeftSlider(sliderId, direction = 'left', speed = 0.5) {
   function animate() {
     scrollPos += (direction === 'left' ? speed : -speed);
 
-    // Reset scroll when halfway through (seamless loop)
     if (Math.abs(scrollPos) >= track.scrollWidth / 2) {
       scrollPos = 0;
     }
@@ -112,6 +112,10 @@ function setupInfiniteLeftSlider(sliderId, direction = 'left', speed = 0.5) {
 
   animate();
 }
+setupInfiniteLeftSlider('slider2', 'left', 0.4);
+
+
+
 
 // Initialize both sliders
 document.addEventListener("DOMContentLoaded", () => {
@@ -128,7 +132,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const nextBtn = document.getElementById("nextBtn");
   const preBtn = document.getElementById("preBtn");
 
-  // Preload images
   const preloadedImages = [];
 
   function preloadImage(index) {
@@ -142,20 +145,17 @@ document.addEventListener("DOMContentLoaded", () => {
   function updateSlider(index) {
     currentIndex = index;
 
-    // Lazy load image: first set opacity 0, then load image, then fade in
     heroSlider.style.opacity = 0;
-
-    // Preload current image
     preloadImage(currentIndex);
 
-    // Wait a little for fade-in effect
+
     setTimeout(() => {
       heroSlider.style.backgroundImage = `url('${sliderImages[currentIndex]}')`;
       heroSlider.style.transition = "opacity 0.5s ease-in-out";
       heroSlider.style.opacity = 1;
-    }, 100); // small delay for lazy effect
+    }, 100); 
 
-    // Preload next image in advance for smooth transition
+
     preloadImage((currentIndex + 1) % sliderImages.length);
 
     updateDots();
@@ -192,10 +192,100 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Auto slide every 5 seconds
+ 
   setInterval(() => {
     updateSlider((currentIndex + 1) % sliderImages.length);
   }, 5000);
 
   updateSlider(0);
+});
+
+
+window.addEventListener("load", () => {
+  const preloader = document.getElementById("preloader");
+  const pageContent = document.getElementById("pageContent");
+
+  console.log("JS loaded, found elements:", preloader, pageContent);
+
+  if (preloader && pageContent) {
+  
+    preloader.style.opacity = "0";
+    preloader.style.transition = "opacity 0.5s ease";
+
+    setTimeout(() => {
+      preloader.style.display = "none"; 
+      pageContent.classList.remove("hidden"); 
+      console.log("Content shown");
+    }, 500);
+  }
+});
+
+//footer 
+
+function toggleQuickLinkAboutUs(e) {
+  e.preventDefault();
+  e.stopPropagation();
+
+  const dropdown = document.getElementById("quickLinkAboutUsDropdown");
+  const isOpen = !dropdown.classList.contains("hidden");
+
+  closeQuickLinkDropdowns();
+
+  if (!isOpen) {
+    dropdown.classList.remove("hidden"); 
+  }
+}
+
+function toggleQuickLinkJoinUs(e) {
+  e.preventDefault();
+  e.stopPropagation();
+
+  const dropdown = document.getElementById("quickLinkJoinUsDropdown");
+  const isOpen = !dropdown.classList.contains("hidden");
+
+  closeQuickLinkDropdowns();
+
+  if (!isOpen) {
+    dropdown.classList.remove("hidden");
+  }
+}
+
+function toggleQuickLinkMissionSub(e) {
+  e.preventDefault();
+  e.stopPropagation();
+
+  const sub = document.getElementById("quickLinkMissionSubItems");
+  const isOpen = !sub.classList.contains("hidden");
+
+
+  sub.classList.add("hidden");
+
+  if (!isOpen) {
+    sub.classList.remove("hidden");
+  }
+}
+
+
+function closeQuickLinkDropdowns() {
+  document.getElementById("quickLinkAboutUsDropdown")?.classList.add("hidden");
+  document.getElementById("quickLinkJoinUsDropdown")?.classList.add("hidden");
+  document.getElementById("quickLinkMissionSubItems")?.classList.add("hidden");
+}
+
+
+document.addEventListener("click", function (e) {
+
+  if (
+    e.target.closest("#quickLinkAboutUsDropdown") ||
+    e.target.closest("#quickLinkJoinUsDropdown") ||
+    e.target.closest("#quickLinkMissionSubItems")
+  ) {
+    closeQuickLinkDropdowns();
+    return;
+  }
+
+
+  if (!e.target.closest("#quickLinkAboutUsMenu") && !e.target.closest("#quickLinkJoinUsMenu")) {
+    closeQuickLinkDropdowns();
+  }
 });
