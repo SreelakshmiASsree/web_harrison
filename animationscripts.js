@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
         runCounter(entry.target);
       }
     });
-  }, { threshold: 0.5 }); 
+  }, { threshold: 0.5 });
 
   counters.forEach(counter => observer.observe(counter));
 });
@@ -46,7 +46,7 @@ items.forEach(item => {
 let scrollAmount = 0;
 
 function animateSlider() {
-  scrollAmount += 1; 
+  scrollAmount += 1;
   if (scrollAmount >= slider.scrollWidth / 2) {
     scrollAmount = 0;
   }
@@ -86,7 +86,7 @@ function setupInfiniteRightSlider(sliderId, direction = 'right', speed = 0.5) {
 }
 
 
-setupInfiniteRightSlider('slider1', 'right', 0.4); 
+setupInfiniteRightSlider('slider1', 'right', 0.4);
 function setupInfiniteLeftSlider(sliderId, direction = 'left', speed = 0.5) {
   const wrapper = document.getElementById(sliderId);
   const track = wrapper.querySelector('.slider-track');
@@ -128,6 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let currentIndex = 0;
   const heroSlider = document.getElementById("heroSlider");
+  const heroImg = heroSlider.querySelector("img"); // <-- grab the <img>
   const dots = document.querySelectorAll("#heroDots .dot");
   const nextBtn = document.getElementById("nextBtn");
   const preBtn = document.getElementById("preBtn");
@@ -145,16 +146,14 @@ document.addEventListener("DOMContentLoaded", () => {
   function updateSlider(index) {
     currentIndex = index;
 
-    heroSlider.style.opacity = 0;
+    heroImg.style.opacity = 0; // fade out
     preloadImage(currentIndex);
 
-
     setTimeout(() => {
-      heroSlider.style.backgroundImage = `url('${sliderImages[currentIndex]}')`;
-      heroSlider.style.transition = "opacity 0.5s ease-in-out";
-      heroSlider.style.opacity = 1;
-    }, 100); 
-
+      heroImg.src = sliderImages[currentIndex]; // <-- update image src
+      heroImg.style.transition = "opacity 0.5s ease-in-out";
+      heroImg.style.opacity = 1; // fade in
+    }, 100);
 
     preloadImage((currentIndex + 1) % sliderImages.length);
 
@@ -192,13 +191,13 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
- 
   setInterval(() => {
     updateSlider((currentIndex + 1) % sliderImages.length);
   }, 5000);
 
   updateSlider(0);
 });
+
 
 
 window.addEventListener("load", () => {
@@ -208,13 +207,13 @@ window.addEventListener("load", () => {
   console.log("JS loaded, found elements:", preloader, pageContent);
 
   if (preloader && pageContent) {
-  
+
     preloader.style.opacity = "0";
     preloader.style.transition = "opacity 0.5s ease";
 
     setTimeout(() => {
-      preloader.style.display = "none"; 
-      pageContent.classList.remove("hidden"); 
+      preloader.style.display = "none";
+      pageContent.classList.remove("hidden");
       console.log("Content shown");
     }, 500);
   }
@@ -232,7 +231,7 @@ function toggleQuickLinkAboutUs(e) {
   closeQuickLinkDropdowns();
 
   if (!isOpen) {
-    dropdown.classList.remove("hidden"); 
+    dropdown.classList.remove("hidden");
   }
 }
 
