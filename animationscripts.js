@@ -59,7 +59,7 @@ animateSlider();
 
 //left and right slider 
 
-function setupInfiniteRightSlider(sliderId, direction = 'right', speed = 0.5) {
+function setupInfiniteSlider(sliderId, direction = 'right', speed = 0.5) {
   const wrapper = document.getElementById(sliderId);
   const track = wrapper.querySelector('.slider-track');
 
@@ -69,13 +69,16 @@ function setupInfiniteRightSlider(sliderId, direction = 'right', speed = 0.5) {
     track.appendChild(clone);
   });
 
-  let scrollPos = 0;
+  // Start scroll position for left slider at half of the track
+  let scrollPos = (direction === 'left') ? track.scrollWidth / 2 : 0;
 
   function animate() {
-    scrollPos += (direction === 'right' ? speed : -speed);
-
-    if (Math.abs(scrollPos) >= track.scrollWidth / 2) {
-      scrollPos = 0;
+    if (direction === 'right') {
+      scrollPos += speed;
+      if (scrollPos >= track.scrollWidth / 2) scrollPos = 0;
+    } else {
+      scrollPos -= speed;
+      if (scrollPos <= 0) scrollPos = track.scrollWidth / 2;
     }
 
     wrapper.scrollLeft = scrollPos;
@@ -85,35 +88,11 @@ function setupInfiniteRightSlider(sliderId, direction = 'right', speed = 0.5) {
   animate();
 }
 
+// Slider 1 → Right
+setupInfiniteSlider('slider1', 'right', 0.4);
 
-setupInfiniteRightSlider('slider1', 'right', 0.4);
-function setupInfiniteLeftSlider(sliderId, direction = 'left', speed = 0.5) {
-  const wrapper = document.getElementById(sliderId);
-  const track = wrapper.querySelector('.slider-track');
-
-  const items = Array.from(track.children);
-  items.forEach(item => {
-    const clone = item.cloneNode(true);
-    track.appendChild(clone);
-  });
-
-  let scrollPos = 0;
-
-  function animate() {
-    scrollPos += (direction === 'left' ? speed : -speed);
-
-    if (Math.abs(scrollPos) >= track.scrollWidth / 2) {
-      scrollPos = 0;
-    }
-
-    wrapper.scrollLeft = scrollPos;
-    requestAnimationFrame(animate);
-  }
-
-  animate();
-}
-setupInfiniteLeftSlider('slider2', 'left', 0.4);
-
+// Slider 2 → Left
+setupInfiniteSlider('slider2', 'left', 0.4);
 
 
 
