@@ -103,6 +103,7 @@ document.addEventListener("DOMContentLoaded", () => {
     "assests/heroone.png",
     "assests/herotwo.webp",
     "assests/herothree.png",
+    "assests/herobanner_img.jpg"
   ];
 
   let currentIndex = 0;
