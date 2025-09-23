@@ -99,11 +99,11 @@ setupInfiniteSlider('slider2', 'left', 0.4);
 // Initialize both sliders
 document.addEventListener("DOMContentLoaded", () => {
   const sliderImages = [
-    "assests/herothree.jpeg",
+    "assests/herobanner_img.jpg",
     "assests/heroone.png",
     "assests/herotwo.webp",
     "assests/herothree.png",
-    "assests/herobanner_img.jpg"
+    
   ];
 
   let currentIndex = 0;
