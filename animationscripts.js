@@ -96,25 +96,34 @@ setupInfiniteSlider('slider2', 'left', 0.4);
 
 
 
-// Initialize both sliders
+// Initialize both sliders hero section
 document.addEventListener("DOMContentLoaded", () => {
   const sliderImages = [
     "assests/herobanner_img.jpg",
     "assests/heroone.png",
     "assests/herotwo.webp",
     "assests/herothree.png",
-    
   ];
 
   let currentIndex = 0;
   const heroSlider = document.getElementById("heroSlider");
-  const heroImg = heroSlider.querySelector("img"); // <-- grab the <img>
   const dots = document.querySelectorAll("#heroDots .dot");
   const nextBtn = document.getElementById("nextBtn");
   const preBtn = document.getElementById("preBtn");
 
+  // Create two images for sliding
+  const imgCurrent = document.createElement("img");
+  const imgNext = document.createElement("img");
+
+  imgCurrent.classList.add("absolute", "w-full", "h-full", "object-cover");
+  imgNext.classList.add("absolute", "w-full", "h-full", "object-cover");
+
+  heroSlider.appendChild(imgCurrent);
+  heroSlider.appendChild(imgNext);
+
   const preloadedImages = [];
 
+  // Preload images
   function preloadImage(index) {
     if (!preloadedImages[index]) {
       const img = new Image();
@@ -123,24 +132,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  function updateSlider(index) {
-    currentIndex = index;
-
-    heroImg.style.opacity = 0; // fade out
-    preloadImage(currentIndex);
-
-    setTimeout(() => {
-      heroImg.src = sliderImages[currentIndex]; // <-- update image src
-      heroImg.style.transition = "opacity 0.5s ease-in-out";
-      heroImg.style.opacity = 1; // fade in
-    }, 100);
-
-    preloadImage((currentIndex + 1) % sliderImages.length);
-
-    updateDots();
-    console.log(`Slide changed to: ${currentIndex}`);
-  }
-
+  // Update dots
   function updateDots() {
     dots.forEach((dot, i) => {
       if (i === currentIndex) {
@@ -153,29 +145,66 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // Slide animation function
+  function slideTo(index) {
+    const nextIndex = (index + sliderImages.length) % sliderImages.length;
+
+    imgNext.src = sliderImages[nextIndex];
+    imgNext.style.transform = "translateX(100%)"; // start off-screen right
+
+    // Force reflow to trigger transition
+    void imgNext.offsetWidth;
+
+    imgCurrent.style.transition = "transform 0.5s ease-in-out";
+    imgNext.style.transition = "transform 0.5s ease-in-out";
+
+    imgCurrent.style.transform = "translateX(-100%)"; // slide out left
+    imgNext.style.transform = "translateX(0)"; // slide in
+
+    // Swap after transition
+    setTimeout(() => {
+      imgCurrent.src = sliderImages[nextIndex];
+      imgCurrent.style.transition = "none";
+      imgCurrent.style.transform = "translateX(0)";
+      imgNext.style.transition = "none";
+    }, 600);
+
+    currentIndex = nextIndex;
+
+    // Update dots and preload next image
+    updateDots();
+    preloadImage((currentIndex + 1) % sliderImages.length);
+  }
+
+  // Dot click
   dots.forEach((dot, i) => {
     dot.addEventListener("click", () => {
-      updateSlider(i);
+      slideTo(i);
     });
   });
 
+  // Next/Prev buttons
   if (nextBtn) {
     nextBtn.addEventListener("click", () => {
-      updateSlider((currentIndex + 1) % sliderImages.length);
+      slideTo(currentIndex + 1);
     });
   }
 
   if (preBtn) {
     preBtn.addEventListener("click", () => {
-      updateSlider((currentIndex - 1 + sliderImages.length) % sliderImages.length);
+      slideTo(currentIndex - 1);
     });
   }
 
+  // Auto slide every 5 seconds
   setInterval(() => {
-    updateSlider((currentIndex + 1) % sliderImages.length);
+    slideTo(currentIndex + 1);
   }, 5000);
 
-  updateSlider(0);
+  // Initialize first image
+  imgCurrent.src = sliderImages[0];
+  preloadImage(0);
+  updateDots();
 });
 
 
