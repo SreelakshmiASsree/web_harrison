@@ -115,15 +115,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const imgCurrent = document.createElement("img");
   const imgNext = document.createElement("img");
 
-  imgCurrent.classList.add("absolute", "w-full", "h-full", "object-cover");
-  imgNext.classList.add("absolute", "w-full", "h-full", "object-cover");
+  [imgCurrent, imgNext].forEach(img => {
+    img.classList.add("absolute", "w-full", "h-full", "object-cover");
+    img.setAttribute("draggable", "false");
+    heroSlider.appendChild(img);
+  });
 
-  heroSlider.appendChild(imgCurrent);
-  heroSlider.appendChild(imgNext);
-
-  const preloadedImages = [];
+  imgCurrent.src = sliderImages[0];
 
   // Preload images
+  const preloadedImages = [];
   function preloadImage(index) {
     if (!preloadedImages[index]) {
       const img = new Image();
@@ -135,77 +136,130 @@ document.addEventListener("DOMContentLoaded", () => {
   // Update dots
   function updateDots() {
     dots.forEach((dot, i) => {
-      if (i === currentIndex) {
-        dot.classList.add("bg-white");
-        dot.classList.remove("bg-transparent");
-      } else {
-        dot.classList.add("bg-transparent");
-        dot.classList.remove("bg-white");
-      }
+      dot.classList.toggle("bg-white", i === currentIndex);
+      dot.classList.toggle("bg-transparent", i !== currentIndex);
     });
   }
 
-  // Slide animation function
+  // Slide function
   function slideTo(index) {
     const nextIndex = (index + sliderImages.length) % sliderImages.length;
-
     imgNext.src = sliderImages[nextIndex];
-    imgNext.style.transform = "translateX(100%)"; // start off-screen right
+    imgNext.style.transform = "translateX(100%)";
 
-    // Force reflow to trigger transition
-    void imgNext.offsetWidth;
+    void imgNext.offsetWidth; // force reflow
 
     imgCurrent.style.transition = "transform 0.5s ease-in-out";
     imgNext.style.transition = "transform 0.5s ease-in-out";
 
-    imgCurrent.style.transform = "translateX(-100%)"; // slide out left
-    imgNext.style.transform = "translateX(0)"; // slide in
+    imgCurrent.style.transform = "translateX(-100%)";
+    imgNext.style.transform = "translateX(0)";
 
-    // Swap after transition
     setTimeout(() => {
       imgCurrent.src = sliderImages[nextIndex];
       imgCurrent.style.transition = "none";
       imgCurrent.style.transform = "translateX(0)";
       imgNext.style.transition = "none";
-    }, 600);
+    }, 1000);
 
     currentIndex = nextIndex;
-
-    // Update dots and preload next image
     updateDots();
     preloadImage((currentIndex + 1) % sliderImages.length);
   }
 
-  // Dot click
+  // Dots click
   dots.forEach((dot, i) => {
-    dot.addEventListener("click", () => {
-      slideTo(i);
-    });
+    dot.addEventListener("click", () => slideTo(i));
   });
 
   // Next/Prev buttons
-  if (nextBtn) {
-    nextBtn.addEventListener("click", () => {
-      slideTo(currentIndex + 1);
-    });
-  }
+  if (nextBtn) nextBtn.addEventListener("click", () => slideTo(currentIndex + 1));
+  if (preBtn) preBtn.addEventListener("click", () => slideTo(currentIndex - 1));
 
-  if (preBtn) {
-    preBtn.addEventListener("click", () => {
-      slideTo(currentIndex - 1);
-    });
-  }
+  // Auto-slide every 5s
+  setInterval(() => slideTo(currentIndex + 1), 5000);
 
-  // Auto slide every 5 seconds
-  setInterval(() => {
-    slideTo(currentIndex + 1);
-  }, 5000);
-
-  // Initialize first image
-  imgCurrent.src = sliderImages[0];
+  // Preload first image
   preloadImage(0);
   updateDots();
+
+  // --- Drag/Swipe functionality ---
+  let isDragging = false;
+  let startX = 0;
+  let currentTranslate = 0;
+  let nextIndex = 0;
+
+  function getNextIndex(direction) {
+    return (currentIndex + direction + sliderImages.length) % sliderImages.length;
+  }
+
+  function dragStart(e) {
+    isDragging = true;
+    startX = e.type.includes("mouse") ? e.clientX : e.touches[0].clientX;
+    heroSlider.style.cursor = "move"
+    imgCurrent.style.transition = "none";
+    imgNext.style.transition = "none";
+  }
+
+  function dragMove(e) {
+    if (!isDragging) return;
+    const currentX = e.type.includes("mouse") ? e.clientX : e.touches[0].clientX;
+    currentTranslate = currentX - startX;
+
+    let direction = currentTranslate < 0 ? 1 : -1;
+    nextIndex = getNextIndex(direction);
+    imgNext.src = sliderImages[nextIndex];
+
+    // Move both images
+    imgCurrent.style.transform = `translateX(${currentTranslate}px)`;
+    imgNext.style.transform = `translateX(${currentTranslate < 0 ? heroSlider.offsetWidth + currentTranslate : -heroSlider.offsetWidth + currentTranslate}px)`;
+  }
+
+  function dragEnd() {
+    if (!isDragging) return;
+    isDragging = false;
+    heroSlider.style.cursor ="move"
+
+    const threshold = heroSlider.offsetWidth / 4; // drag threshold
+    if (Math.abs(currentTranslate) > threshold) {
+      // Slide to next/prev
+      imgCurrent.style.transition = "transform 0.3s ease-out";
+      imgNext.style.transition = "transform 0.3s ease-out";
+
+      imgCurrent.style.transform = `translateX(${currentTranslate < 0 ? -heroSlider.offsetWidth : heroSlider.offsetWidth}px)`;
+      imgNext.style.transform = "translateX(0)";
+
+      setTimeout(() => {
+        imgCurrent.src = sliderImages[nextIndex];
+        imgCurrent.style.transition = "none";
+        imgCurrent.style.transform = "translateX(0)";
+        imgNext.style.transition = "none";
+        currentIndex = nextIndex;
+        updateDots();
+      }, 1000);
+    } else {
+      // Snap back
+      imgCurrent.style.transition = "transform 0.3s ease-out";
+      imgNext.style.transition = "transform 0.3s ease-out";
+      imgCurrent.style.transform = "translateX(0)";
+      imgNext.style.transform = currentTranslate < 0 ? `${heroSlider.offsetWidth}px` : `-${heroSlider.offsetWidth}px`;
+      setTimeout(() => {
+        imgNext.style.transition = "none";
+      }, 1000);
+    }
+  }
+
+  heroSlider.addEventListener("mousedown", dragStart);
+  heroSlider.addEventListener("mousemove", dragMove);
+  heroSlider.addEventListener("mouseup", dragEnd);
+  heroSlider.addEventListener("mouseleave", dragEnd);
+
+  heroSlider.addEventListener("touchstart", dragStart, { passive: true });
+  heroSlider.addEventListener("touchmove", dragMove, { passive: true });
+  heroSlider.addEventListener("touchend", dragEnd);
 });
+
+
 
 
 
