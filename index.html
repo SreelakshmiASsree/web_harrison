@@ -89,7 +89,7 @@
             </div>
 
             <!-- Navbar -->
-            <nav class="bg-white shadow">
+            <nav class="bg-white shadow relative">
                 <div class="custom_container  ">
                     <!-- Logo + Hamburger -->
                     <div class="flex items-center justify-between lg:py-0 py-4  ">
@@ -181,7 +181,8 @@
                 </div>
 
                 <!-- Mobile Menu -->
-                <div id="mobileMenu" class="lg:hidden hidden px-4 pb-4">
+              <div id="mobileMenu" class="lg:hidden hidden absolute top-full left-0 w-full bg-white px-4 pb-4 z-[9999] shadow-md">
+
                     <ul class="space-y-2 text-[#1f3c8a] font-semibold">
                         <li>
                             <details class="w-full">
@@ -212,11 +213,11 @@
             </nav>
         </section>
 
-        <section>
+        <section class="">
             <div id="heroSlider"
                 class="relative w-full   h-full transition-all duration-500 ease-in-out flex items-center justify-center">
                 <img src="assests/herobanner_img.jpg" alt="Hero Image" class="w-full h-full object-contain " />
-            </div>
+            
 
 
 
@@ -224,18 +225,18 @@
 
             </div>
 
-            <div class="block">
+            
                 <button id="preBtn"
-                    class="absolute top-64 lg:top-3/4 lg:left-10 left-2 transform -translate-y-1/2 text-[#000] lg:text-2xl text-xs bg-[#fff] hover:bg-[#d2d0d0] lg:w-14 w-7 h-7 lg:h-14 rounded-full flex justify-center items-center">
+                    class="absolute z-10 top-24 lg:top-[25rem]  lg:left-10 left-2 transform -translate-y-1/2 text-[#000] lg:text-2xl text-xs bg-[#fff] hover:bg-[#d2d0d0] lg:w-14 w-7 h-7 lg:h-14 rounded-full flex justify-center items-center">
                     <i class="fas fa-arrow-left "></i>
                 </button>
 
                 <button id="nextBtn"
-                    class="absolute top-64 lg:top-3/4   lg:right-40 right-[3rem] transform -translate-y-1/2 text-[#000] lg:text-2xl text-xs bg-[#fff] hover:bg-[#d2d0d0] lg:w-14 w-7 h-7 lg:h-14 rounded-full flex justify-center items-center">
+                    class="absolute z-10 top-24  lg:top-[25rem]   lg:right-40 right-[3rem] transform -translate-y-1/2 text-[#000] lg:text-2xl text-xs bg-[#fff] hover:bg-[#d2d0d0] lg:w-14 w-7 h-7 lg:h-14 rounded-full flex justify-center items-center">
                     <i class="fas fa-arrow-right"></i>
                 </button>
-            </div>
-
+         
+</div>
 
 
             <div id="heroDots" class="absolute  lg:-bottom-36   left-1/2  hidden lg:flex gap-2">

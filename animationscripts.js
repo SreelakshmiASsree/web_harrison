@@ -97,6 +97,7 @@ setupInfiniteSlider('slider2', 'left', 0.4);
 
 
 // Initialize both sliders hero section
+// JS
 document.addEventListener("DOMContentLoaded", () => {
   const sliderImages = [
     "assests/herobanner_img.jpg",
@@ -133,7 +134,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Update dots
   function updateDots() {
     dots.forEach((dot, i) => {
       dot.classList.toggle("bg-white", i === currentIndex);
@@ -141,18 +141,24 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Slide function
   function slideTo(index) {
     const nextIndex = (index + sliderImages.length) % sliderImages.length;
+    const direction = index > currentIndex ? 1 : -1;
+
     imgNext.src = sliderImages[nextIndex];
-    imgNext.style.transform = "translateX(100%)";
+
+    // Reset positions
+    imgCurrent.style.transition = "none";
+    imgNext.style.transition = "none";
+    imgNext.style.transform = `translateX(${direction * 100}%)`;
+    imgCurrent.style.transform = "translateX(0)";
 
     void imgNext.offsetWidth; // force reflow
 
-    imgCurrent.style.transition = "transform 0.5s ease-in-out";
-    imgNext.style.transition = "transform 0.5s ease-in-out";
-
-    imgCurrent.style.transform = "translateX(-100%)";
+    // Animate
+    imgCurrent.style.transition = "transform 0.6s ease-in-out";
+    imgNext.style.transition = "transform 0.6s ease-in-out";
+    imgCurrent.style.transform = `translateX(${direction * -100}%)`;
     imgNext.style.transform = "translateX(0)";
 
     setTimeout(() => {
@@ -160,35 +166,35 @@ document.addEventListener("DOMContentLoaded", () => {
       imgCurrent.style.transition = "none";
       imgCurrent.style.transform = "translateX(0)";
       imgNext.style.transition = "none";
-    },500);
-
-    currentIndex = nextIndex;
-    updateDots();
-    preloadImage((currentIndex + 1) % sliderImages.length);
+      imgNext.style.transform = "translateX(100%)";
+      currentIndex = nextIndex;
+      updateDots();
+      preloadImage((currentIndex + 1) % sliderImages.length);
+    }, 600);
   }
 
   // Dots click
-  dots.forEach((dot, i) => {
-    dot.addEventListener("click", () => slideTo(i));
-  });
+  dots.forEach((dot, i) => dot.addEventListener("click", () => {
+    slideTo(i);
+    resetAutoSlide();
+  }));
+
+  // Auto-slide
+  let autoSlideTimer = setInterval(() => slideTo(currentIndex + 1), 5000);
+  function resetAutoSlide() {
+    clearInterval(autoSlideTimer);
+    autoSlideTimer = setInterval(() => slideTo(currentIndex + 1), 5000);
+  }
 
   // Next/Prev buttons
-  if (nextBtn) nextBtn.addEventListener("click", () => slideTo(currentIndex + 1));
-  if (preBtn) preBtn.addEventListener("click", () => slideTo(currentIndex - 1));
+  nextBtn.addEventListener("click", () => { slideTo(currentIndex + 1); resetAutoSlide(); });
+  preBtn.addEventListener("click", () => { slideTo(currentIndex - 1); resetAutoSlide(); });
 
-  // Auto-slide every 5s
-  setInterval(() => slideTo(currentIndex + 1), 5000);
-
-  // Preload first image
-  preloadImage(0);
   updateDots();
+  preloadImage(0);
 
-  // --- Drag/Swipe functionality ---
-  let isDragging = false;
-  let startX = 0;
-  let currentTranslate = 0;
-  let nextIndex = 0;
-  let animationFrame;
+  // Drag/Swipe
+  let isDragging = false, startX = 0, currentTranslate = 0, nextIndexDrag = 0;
 
   function getNextIndex(direction) {
     return (currentIndex + direction + sliderImages.length) % sliderImages.length;
@@ -199,24 +205,20 @@ document.addEventListener("DOMContentLoaded", () => {
     startX = e.type.includes("mouse") ? e.clientX : e.touches[0].clientX;
     imgCurrent.style.transition = "none";
     imgNext.style.transition = "none";
-    cancelAnimationFrame(animationFrame);
+     heroSlider.style.cursor = "move";
   }
 
   function dragMove(e) {
     if (!isDragging) return;
-
     const currentX = e.type.includes("mouse") ? e.clientX : e.touches[0].clientX;
     currentTranslate = currentX - startX;
-
-    let direction = currentTranslate < 0 ? 1 : -1;
-    nextIndex = getNextIndex(direction);
-    imgNext.src = sliderImages[nextIndex];
+    const direction = currentTranslate < 0 ? 1 : -1;
+    nextIndexDrag = getNextIndex(direction);
+    imgNext.src = sliderImages[nextIndexDrag];
 
     const width = heroSlider.offsetWidth;
     imgCurrent.style.transform = `translateX(${currentTranslate}px)`;
-    imgNext.style.transform = `translateX(${
-      currentTranslate < 0 ? width + currentTranslate : -width + currentTranslate
-    }px)`;
+    imgNext.style.transform = `translateX(${currentTranslate < 0 ? width + currentTranslate : -width + currentTranslate}px)`;
   }
 
   function dragEnd() {
@@ -225,64 +227,41 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const width = heroSlider.offsetWidth;
     const threshold = width / 6;
+     heroSlider.style.cursor = "move";
 
     if (Math.abs(currentTranslate) > threshold) {
-      // Slide complete
       const direction = currentTranslate < 0 ? 1 : -1;
-
       imgCurrent.style.transition = "transform 0.3s ease-out";
       imgNext.style.transition = "transform 0.3s ease-out";
-
       imgCurrent.style.transform = `translateX(${direction * -width}px)`;
-      imgNext.style.transform = "translateX(0)";
+      imgNext.style.transform = `translateX(0)`;
 
       setTimeout(() => {
-        imgCurrent.src = sliderImages[nextIndex];
+        imgCurrent.src = sliderImages[nextIndexDrag];
         imgCurrent.style.transition = "none";
         imgCurrent.style.transform = "translateX(0)";
         imgNext.style.transition = "none";
-        currentIndex = nextIndex;
+        currentIndex = nextIndexDrag;
         updateDots();
+        resetAutoSlide();
       }, 300);
     } else {
-      // Snap back if not reached threshold
       imgCurrent.style.transition = "transform 0.3s ease-out";
       imgNext.style.transition = "transform 0.3s ease-out";
-
       imgCurrent.style.transform = "translateX(0)";
-      imgNext.style.transform =
-        currentTranslate < 0
-          ? `translateX(${width}px)`
-          : `translateX(-${width}px)`;
-
-      // ensure after snap it resets properly
-      animationFrame = requestAnimationFrame(() => {
-        setTimeout(() => {
-          imgNext.style.transition = "none";
-          imgNext.style.transform =
-            currentTranslate < 0
-              ? `translateX(${width}px)`
-              : `translateX(-${width}px)`;
-        }, 300);
-      });
+      imgNext.style.transform = currentTranslate < 0 ? `translateX(${width}px)` : `translateX(-${width}px)`;
     }
-
     currentTranslate = 0;
   }
 
-  // Mouse events
   heroSlider.addEventListener("mousedown", dragStart);
   heroSlider.addEventListener("mousemove", dragMove);
   heroSlider.addEventListener("mouseup", dragEnd);
   heroSlider.addEventListener("mouseleave", dragEnd);
-
-  // Touch events
   heroSlider.addEventListener("touchstart", dragStart, { passive: true });
   heroSlider.addEventListener("touchmove", dragMove, { passive: true });
   heroSlider.addEventListener("touchend", dragEnd);
 });
-
-
 
 
 window.addEventListener("load", () => {
