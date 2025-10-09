@@ -115,7 +115,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const imgCurrent = document.createElement("img");
   const imgNext = document.createElement("img");
 
-  [imgCurrent, imgNext].forEach(img => {
+  [imgCurrent, imgNext].forEach((img) => {
     img.classList.add("absolute", "w-full", "h-full", "object-cover");
     img.setAttribute("draggable", "false");
     heroSlider.appendChild(img);
@@ -160,7 +160,7 @@ document.addEventListener("DOMContentLoaded", () => {
       imgCurrent.style.transition = "none";
       imgCurrent.style.transform = "translateX(0)";
       imgNext.style.transition = "none";
-    }, 1000);
+    },500);
 
     currentIndex = nextIndex;
     updateDots();
@@ -188,6 +188,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let startX = 0;
   let currentTranslate = 0;
   let nextIndex = 0;
+  let animationFrame;
 
   function getNextIndex(direction) {
     return (currentIndex + direction + sliderImages.length) % sliderImages.length;
@@ -196,13 +197,14 @@ document.addEventListener("DOMContentLoaded", () => {
   function dragStart(e) {
     isDragging = true;
     startX = e.type.includes("mouse") ? e.clientX : e.touches[0].clientX;
-    heroSlider.style.cursor = "move"
     imgCurrent.style.transition = "none";
     imgNext.style.transition = "none";
+    cancelAnimationFrame(animationFrame);
   }
 
   function dragMove(e) {
     if (!isDragging) return;
+
     const currentX = e.type.includes("mouse") ? e.clientX : e.touches[0].clientX;
     currentTranslate = currentX - startX;
 
@@ -210,23 +212,28 @@ document.addEventListener("DOMContentLoaded", () => {
     nextIndex = getNextIndex(direction);
     imgNext.src = sliderImages[nextIndex];
 
-    // Move both images
+    const width = heroSlider.offsetWidth;
     imgCurrent.style.transform = `translateX(${currentTranslate}px)`;
-    imgNext.style.transform = `translateX(${currentTranslate < 0 ? heroSlider.offsetWidth + currentTranslate : -heroSlider.offsetWidth + currentTranslate}px)`;
+    imgNext.style.transform = `translateX(${
+      currentTranslate < 0 ? width + currentTranslate : -width + currentTranslate
+    }px)`;
   }
 
   function dragEnd() {
     if (!isDragging) return;
     isDragging = false;
-    heroSlider.style.cursor ="move"
 
-    const threshold = heroSlider.offsetWidth / 4; // drag threshold
+    const width = heroSlider.offsetWidth;
+    const threshold = width / 6;
+
     if (Math.abs(currentTranslate) > threshold) {
-      // Slide to next/prev
+      // Slide complete
+      const direction = currentTranslate < 0 ? 1 : -1;
+
       imgCurrent.style.transition = "transform 0.3s ease-out";
       imgNext.style.transition = "transform 0.3s ease-out";
 
-      imgCurrent.style.transform = `translateX(${currentTranslate < 0 ? -heroSlider.offsetWidth : heroSlider.offsetWidth}px)`;
+      imgCurrent.style.transform = `translateX(${direction * -width}px)`;
       imgNext.style.transform = "translateX(0)";
 
       setTimeout(() => {
@@ -236,29 +243,44 @@ document.addEventListener("DOMContentLoaded", () => {
         imgNext.style.transition = "none";
         currentIndex = nextIndex;
         updateDots();
-      }, 1000);
+      }, 300);
     } else {
-      // Snap back
+      // Snap back if not reached threshold
       imgCurrent.style.transition = "transform 0.3s ease-out";
       imgNext.style.transition = "transform 0.3s ease-out";
+
       imgCurrent.style.transform = "translateX(0)";
-      imgNext.style.transform = currentTranslate < 0 ? `${heroSlider.offsetWidth}px` : `-${heroSlider.offsetWidth}px`;
-      setTimeout(() => {
-        imgNext.style.transition = "none";
-      }, 1000);
+      imgNext.style.transform =
+        currentTranslate < 0
+          ? `translateX(${width}px)`
+          : `translateX(-${width}px)`;
+
+      // ensure after snap it resets properly
+      animationFrame = requestAnimationFrame(() => {
+        setTimeout(() => {
+          imgNext.style.transition = "none";
+          imgNext.style.transform =
+            currentTranslate < 0
+              ? `translateX(${width}px)`
+              : `translateX(-${width}px)`;
+        }, 300);
+      });
     }
+
+    currentTranslate = 0;
   }
 
+  // Mouse events
   heroSlider.addEventListener("mousedown", dragStart);
   heroSlider.addEventListener("mousemove", dragMove);
   heroSlider.addEventListener("mouseup", dragEnd);
   heroSlider.addEventListener("mouseleave", dragEnd);
 
+  // Touch events
   heroSlider.addEventListener("touchstart", dragStart, { passive: true });
   heroSlider.addEventListener("touchmove", dragMove, { passive: true });
   heroSlider.addEventListener("touchend", dragEnd);
 });
-
 
 
 

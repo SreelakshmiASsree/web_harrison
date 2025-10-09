@@ -161,3 +161,8 @@ html, body {
 #joinDropdown:hover {
   display: block;
 }
+#heroSlider {
+  touch-action: pan-y;
+  overflow: hidden;
+  position: relative;
+}
